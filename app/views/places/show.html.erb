@@ -2,6 +2,8 @@
 
 <p><a href="/places">Back to places</a></p>
 
+<p><a href="/entries/new?place_id=<%= @place["id"] %>">Log an entry</a></p>
+
 <ul>
   <% @entries.each do |entry| %>
     <li><%= entry["title"] %>, <%= entry["occurred_on"] %></li>
