@@ -34,4 +34,35 @@ class PlacesPageTest < ActionDispatch::IntegrationTest
     assert_select("li", { :count => 0 })
     assert_select("p", "There are no places yet.")
   end
+
+  test "The new place page has a form with a box for the place's name and a button." do
+    get("/places/new")
+
+    assert_response(:success)
+    assert_select("form[action=?][method=?]", "/places", "post") do
+      assert_select("input[name=?]", "name")
+      assert_select("button")
+    end
+  end
+
+  test "Submitting the form creates a place with the name that was entered." do
+    post("/places", { :params => { "name" => "Lisbon" } })
+
+    assert_equal(1, Place.count)
+    assert_equal("Lisbon", Place.first["name"])
+  end
+
+  test "After submitting, the user lands on the places page and sees the new place there." do
+    post("/places", { :params => { "name" => "Lisbon" } })
+
+    assert_redirected_to("/places")
+    follow_redirect!
+    assert_select("li", "Lisbon")
+  end
+
+  test "The places page has a link to the new place page." do
+    get("/places")
+
+    assert_select("a[href=?]", "/places/new")
+  end
 end
