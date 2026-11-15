@@ -1,0 +1,16 @@
+<h1>New entry for <%= @place["name"] %></h1>
+
+<form action="/entries" method="post">
+  <input type="hidden" name="place_id" value="<%= @place["id"] %>">
+
+  <label for="title">Title</label>
+  <input id="title" type="text" name="title">
+
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description">
+
+  <label for="occurred_on">Day it happened</label>
+  <input id="occurred_on" type="date" name="occurred_on">
+
+  <button>Add entry</button>
+</form>
