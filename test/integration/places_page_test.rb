@@ -46,14 +46,14 @@ class PlacesPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Submitting the form creates a place with the name that was entered." do
-    post("/places", { :params => { "name" => "Lisbon" } })
+    post("/places", :params => { "name" => "Lisbon" })
 
     assert_equal(1, Place.count)
     assert_equal("Lisbon", Place.first["name"])
   end
 
   test "After submitting, the user lands on the places page and sees the new place there." do
-    post("/places", { :params => { "name" => "Lisbon" } })
+    post("/places", :params => { "name" => "Lisbon" })
 
     assert_redirected_to("/places")
     follow_redirect!

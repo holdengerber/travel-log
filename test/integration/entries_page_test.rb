@@ -33,7 +33,7 @@ class EntriesPageTest < ActionDispatch::IntegrationTest
     place["name"] = "Lisbon"
     place.save
 
-    post("/entries", { :params => { "title" => "Grilled sardines in Alfama", "description" => "Six of them.", "occurred_on" => "2026-03-15", "place_id" => place["id"] } })
+    post("/entries", :params => { "title" => "Grilled sardines in Alfama", "description" => "Six of them.", "occurred_on" => "2026-03-15", "place_id" => place["id"] })
 
     assert_equal(1, Entry.count)
     entry = Entry.first
@@ -48,7 +48,7 @@ class EntriesPageTest < ActionDispatch::IntegrationTest
     place["name"] = "Lisbon"
     place.save
 
-    post("/entries", { :params => { "title" => "Grilled sardines in Alfama", "description" => "Six of them.", "occurred_on" => "2026-03-15", "place_id" => place["id"] } })
+    post("/entries", :params => { "title" => "Grilled sardines in Alfama", "description" => "Six of them.", "occurred_on" => "2026-03-15", "place_id" => place["id"] })
 
     assert_redirected_to("/places/#{place["id"]}")
     follow_redirect!
