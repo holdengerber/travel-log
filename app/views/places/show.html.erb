@@ -1,0 +1,9 @@
+<h1><%= @place["name"] %></h1>
+
+<p><a href="/places">Back to places</a></p>
+
+<ul>
+  <% @entries.each do |entry| %>
+    <li><%= entry["title"] %>, <%= entry["occurred_on"] %></li>
+  <% end %>
+</ul>
